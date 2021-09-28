@@ -14,7 +14,7 @@ export class SearchResults extends Component {
     };
   }
   deleteExercise(id) {
-    axios.delete("http://localhost:5000/exercises/" + id).then((response) => {
+    axios.delete("/exercises/" + id).then((response) => {
       console.log(response.data);
     });
 
