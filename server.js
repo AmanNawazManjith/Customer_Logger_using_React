@@ -14,7 +14,7 @@ if(process.env.NODE_ENV === 'production'){
 
     app.get('*', (request, response) => {
 
-        response.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+        response.sendFile(path.join(__dirname, 'frontend/build', 'index.js'));
         
          });
 }
