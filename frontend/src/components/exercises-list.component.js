@@ -18,7 +18,7 @@ export default class ExercisesList extends Component {
 
   componentDidMount() {
     axios
-      .get("/exercises/")
+      .get("/exercises")
       .then((response) => {
         this.setState({ exercises: response.data });
       })
@@ -35,7 +35,7 @@ export default class ExercisesList extends Component {
       .then((response) => {
         const data = response.data;
         this.setState({ posts: data });
-        console.log("Data has been received!");
+        console.log(data);
       })
       .catch(() => {
         alert("Error retrieving data!");
