@@ -31,7 +31,7 @@ export default class ExercisesList extends Component {
 
   getCustDatabase = () => {
     axios
-      .get("/")
+      .get("/exercises")
       .then((response) => {
         const data = response.data;
         this.setState({ posts: data });
