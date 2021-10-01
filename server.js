@@ -8,16 +8,9 @@ require('dotenv').config();
 const app = express();
 
 //Server static assets if in production
-if(process.env.NODE_ENV === 'production'){
-    //Set static folder
-    app.use(express.static('frontend/build'));
-
-    app.get('*', (request, response) => {
-
-        response.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
-        
-         });
-}
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("frontend/build"));
+  }
 const port = process.env.PORT || 5000;
 
 app.use(cors());
