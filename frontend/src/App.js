@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <div className="container">
-      <Navbar />
+      {/* <Navbar /> */}
       <br/>
       <div className="log_div">
       <Route path="/" exact component={ExercisesList} />
