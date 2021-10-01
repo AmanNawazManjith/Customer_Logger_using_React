@@ -7,10 +7,7 @@ require('dotenv').config();
 
 const app = express();
 
-//Server static assets if in production
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("frontend/build"));
-  }
+
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -26,6 +23,11 @@ connection.once('open', () => {
 const exercisesRouter = require('./routes/exercises');
 
 app.use('/exercises', exercisesRouter);
+
+//Server static assets if in production
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("frontend/build"));
+  }
 
 app.listen(port, () =>{
     console.log(`Server is running on port: ${port}`);
