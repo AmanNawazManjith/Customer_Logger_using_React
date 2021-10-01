@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 
 const secToDateConverter = (SECONDS) => {
@@ -21,14 +22,9 @@ const Exercise = (props) => (
     <td>{props.exercise.charges}</td>
     <td>{secToDateConverter(props.exercise.delDate)}</td>
     <td>
-      <button
-        className="btn btn-primary"
-        onClick={() => {
-          window.location.href = "/edit/" + props.exercise._id;
-        }}
-      >
-        Edit
-      </button>{" "}
+      <Link
+      to={`/edit/${props.exercise._id}`} className="nav-link">Edit
+      </Link>{" "}
       |{" "}
       <button
         className="btn btn-danger"
