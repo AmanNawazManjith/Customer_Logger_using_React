@@ -66,6 +66,7 @@ export default class ExercisesList extends Component {
 
   render() {
     const { exercises, searchResults } = this.state;
+    const { sorted, setSorted } = this.state;
     let filteredResults;
     if (searchResults !== "") {
       filteredResults = exercises.filter((data) =>
@@ -75,13 +76,54 @@ export default class ExercisesList extends Component {
       <h6>No results found</h6>
       filteredResults = this.state.exercises;
     }
-
+    const getStatus = ()=>{
+      let newExe = [];
+      for(var i=0;i<exercises.length;i++){
+        var element = exercises[i];
+        if(element.workStat == " Completed"){
+          newExe.splice(0, 0, element);
+        }else{
+          newExe[newExe.length] = element;
+        }
+      }
+      this.setState({exercises:newExe});
+      this.setState({sorted:"Status"});
+    }
+    const getName = ()=>{
+      const exe = exercises;
+      exe.sort(function(a, b) { return a.cName.localeCompare(b.cName); });
+      this.setState(exe);
+      this.setState({sorted:"Name"});
+    }
     return (
       <div>
         <SearchBox
           placeholder="Enter text here..."
           handleChange={(e) => this.setState({ searchResults: e.target.value })}
         />
+        <div class="dropdown py-2">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {sorted == undefined ? "Sort" : sorted}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" href="#" onClick={getName}>
+              Name
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" onClick={getStatus}>
+              Status
+            </a>
+          </li>
+        </ul>
+      </div>
         <h3>Customer List</h3>
         <table className="table">
           <thead className="thead-light">
